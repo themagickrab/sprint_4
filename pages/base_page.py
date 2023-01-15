@@ -1,9 +1,6 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
 
 class BasePage:
     LOGO_YANDEX = [By.CLASS_NAME, 'Header_LogoYandex__3TSOI']

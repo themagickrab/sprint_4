@@ -1,5 +1,7 @@
 import pytest
 import random
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture()
 def personal_data():
@@ -16,3 +18,11 @@ def personal_data_two():
     return {'name': 'Мария', 'last_name': 'Кравченко',
             'address': 'Лубянка 1', 'metro': 'Лубянка',
             'phone': str(random.randint(100000000000, 999999999999))}
+
+@pytest.fixture()
+def driver():
+    driver = webdriver.Firefox()
+    driver.get('https://qa-scooter.praktikum-services.ru/')
+    yield driver
+    driver.quit()
+

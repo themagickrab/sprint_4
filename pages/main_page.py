@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 class MainPage:
-    ORDER_BUTTON_ON_MAIN = [By.XPATH, '/html/body/div/div/div/div[4]/div[2]/div[5]/button']
+    ORDER_BUTTON_ON_MAIN = [By.XPATH, '//*[@id="root"]/div/div/div[4]/div[2]/div[5]/button']
     FAQ_TABLE = [By.CLASS_NAME, 'Home_FAQ__3uVm4']
 
     QUESTION_ONE = [By.ID, 'accordion__heading-0']
@@ -32,6 +32,7 @@ class MainPage:
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def click_order_button_on_main(self):
+        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.ORDER_BUTTON_ON_MAIN))
         self.driver.find_element(*self.ORDER_BUTTON_ON_MAIN).click()
 
     def scroll_to_questions(self):
