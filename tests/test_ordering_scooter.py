@@ -9,7 +9,6 @@ driver = driver
 personal_data = personal_data
 personal_data_two = personal_data_two
 date = date
-
 @allure.title('Тест аренды скутера через кнопку "заказать" в шапке')
 def test_ordering_scooter_via_the_order_button_in_the_header(driver, personal_data, date):
     name = personal_data.get('name')
