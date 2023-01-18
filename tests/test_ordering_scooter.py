@@ -1,14 +1,10 @@
 import allure
-from confest import personal_data, personal_data_two, date, driver
 from pages.base_page import BasePage
 from pages.whom_scooter_page import WhoIsTheScooterFor
 from pages.rent_page import RentPage
 from pages.main_page import MainPage
 
-driver = driver
-personal_data = personal_data
-personal_data_two = personal_data_two
-date = date
+
 @allure.title('Тест аренды скутера через кнопку "заказать" в шапке')
 def test_ordering_scooter_via_the_order_button_in_the_header(driver, personal_data, date):
     name = personal_data.get('name')

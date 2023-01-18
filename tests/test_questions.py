@@ -1,8 +1,6 @@
 import allure
-from confest import driver
 from pages.main_page import MainPage
 
-driver = driver
 @allure.title('Проверяем тескт ответа на вопрос - "Сколько это стоит? И как оплатить?"')
 def test_answer_one(driver):
     main = MainPage(driver)
