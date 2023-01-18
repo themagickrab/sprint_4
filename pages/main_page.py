@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from pages.base_page import BasePage
 
-class MainPage:
+class MainPage(BasePage):
     ORDER_BUTTON_ON_MAIN = [By.XPATH, '//*[@id="root"]/div/div/div[4]/div[2]/div[5]/button']
     FAQ_TABLE = [By.CLASS_NAME, 'Home_FAQ__3uVm4']
 
@@ -24,8 +25,19 @@ class MainPage:
     ANSWER_SEVEN_TEXT = [By.XPATH, '//*[@id="accordion__panel-6"]']
     ANSWER_EIGHT_TEXT = [By.XPATH, '//*[@id="accordion__panel-7"]']
 
-    def __init__(self, driver):
-        self.driver = driver
+    text_answer_1 = 'Сутки — 400 рублей. Оплата курьеру — наличными или картой.'
+    text_answer_2 = 'Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, '\
+             'можете просто сделать несколько заказов — один за другим.'
+    text_answer_3 = 'Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. ' \
+             'Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. ' \
+             'Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.'
+    text_answer_4 = 'Только начиная с завтрашнего дня. Но скоро станем расторопнее.'
+    text_answer_5 = 'Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.'
+    text_answer_6 = 'Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься ' \
+             'без передышек и во сне. Зарядка не понадобится.'
+    text_answer_7 = 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.'
+    text_answer_8 = 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'
+
 
     def scroll_to_order_button(self):
         element = self.driver.find_element(*self.ORDER_BUTTON_ON_MAIN)
@@ -35,70 +47,10 @@ class MainPage:
         WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.ORDER_BUTTON_ON_MAIN))
         self.driver.find_element(*self.ORDER_BUTTON_ON_MAIN).click()
 
-    def scroll_to_questions(self):
+    def get_text_answer(self, quest,answer):
         fq = self.driver.find_element(*self.FAQ_TABLE)
         self.driver.execute_script("arguments[0].scrollIntoView();", fq)
-
-    def click_question_one(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_ONE))
-        self.driver.find_element(*self.QUESTION_ONE).click()
-
-    def get_text_answer_one(self):
-        text = self.driver.find_element(*self.ANSWER_ONE_TEXT).text
-        return text
-
-    def click_question_two(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_TWO))
-        self.driver.find_element(*self.QUESTION_TWO).click()
-
-    def get_text_answer_two(self):
-        text = self.driver.find_element(*self.ANSWER_TWO_TEXT).text
-        return text
-
-    def click_question_three(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_THREE))
-        self.driver.find_element(*self.QUESTION_THREE).click()
-
-    def get_text_answer_three(self):
-        text = self.driver.find_element(*self.ANSWER_THREE_TEXT).text
-        return text
-
-    def click_question_four(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_FOUR))
-        self.driver.find_element(*self.QUESTION_FOUR).click()
-
-    def get_text_answer_four(self):
-        text = self.driver.find_element(*self.ANSWER_FOUR_TEXT).text
-        return text
-
-    def click_question_five(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_FIVE))
-        self.driver.find_element(*self.QUESTION_FIVE).click()
-
-    def get_text_answer_five(self):
-        text = self.driver.find_element(*self.ANSWER_FIVE_TEXT).text
-        return text
-
-    def click_question_six(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_SIX))
-        self.driver.find_element(*self.QUESTION_SIX).click()
-
-    def get_text_answer_six(self):
-        text = self.driver.find_element(*self.ANSWER_SIX_TEXT).text
-        return text
-
-    def click_question_seven(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_SEVEN))
-        self.driver.find_element(*self.QUESTION_SEVEN).click()
-
-    def get_text_answer_seven(self):
-        text = self.driver.find_element(*self.ANSWER_SEVEN_TEXT).text
-        return text
-
-    def click_question_eight(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.QUESTION_EIGHT))
-        self.driver.find_element(*self.QUESTION_EIGHT).click()
-
-    def get_text_answer_eight(self):
-        text = self.driver.find_element(*self.ANSWER_EIGHT_TEXT).text
+        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(quest))
+        self.driver.find_element(*quest).click()
+        text = self.driver.find_element(*answer).text
         return text

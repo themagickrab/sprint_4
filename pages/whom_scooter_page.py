@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
-class WhoIsTheScooterFor:
+from pages.base_page import BasePage
+class WhoIsTheScooterFor(BasePage):
     NAME_FIELD = [By.CSS_SELECTOR, '[placeholder="* Имя"]']
     LAST_NAME_FIELD = [By.CSS_SELECTOR, '[placeholder="* Фамилия"]']
     ADDRESS_FIELD = [By.CSS_SELECTOR, '[placeholder="* Адрес: куда привезти заказ"]']
@@ -10,9 +10,6 @@ class WhoIsTheScooterFor:
     PHONE_FIELD = [By.CSS_SELECTOR, '[placeholder="* Телефон: на него позвонит курьер"]']
     NEXT_BUTTON = [By.XPATH, '//*[text()="Далее"]']
     PLACEHOLDER_METRO_BUTTON = [By.CLASS_NAME, 'select-search__select']
-
-    def __init__(self, driver):
-        self.driver = driver
 
     def set_name(self, name):
         self.driver.find_element(*self.NAME_FIELD).send_keys(name)

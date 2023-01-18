@@ -4,7 +4,6 @@ from pages.whom_scooter_page import WhoIsTheScooterFor
 from pages.rent_page import RentPage
 from pages.main_page import MainPage
 
-
 @allure.title('Тест аренды скутера через кнопку "заказать" в шапке')
 def test_ordering_scooter_via_the_order_button_in_the_header(driver, personal_data, date):
     name = personal_data.get('name')
