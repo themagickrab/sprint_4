@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from pages.base_page import BasePage
+
 class RentPage(BasePage):
     CALENDAR_FIELD = [By.CSS_SELECTOR, '[placeholder="* Когда привезти самокат"]']
     RENTAL_PERIOD_FIELD = [By.CLASS_NAME, 'Dropdown-placeholder']
